@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{10B8DE66-48CA-4253-9FC9-45DBB118507B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{D36E4E1F-136C-4E71-A6DF-0601B2D55D3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{EED61563-6517-4218-9768-2AF9C25586C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{5FA6DD3E-56AC-47EA-ACF7-1ABC8E4768CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Services.Identity.Api", "Services\Identity\FoodShop.Services.Identity.Api\FoodShop.Services.Identity.Api.csproj", "{11B98256-6635-48A4-BC7F-722A90CA8253}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuendeIdentityServer", "Services\Identity\DuendeIdentityServer\DuendeIdentityServer.csproj", "{A6ABA355-42C7-4545-B0F6-9130E316D652}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11B98256-6635-48A4-BC7F-722A90CA8253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B98256-6635-48A4-BC7F-722A90CA8253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B98256-6635-48A4-BC7F-722A90CA8253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B98256-6635-48A4-BC7F-722A90CA8253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6ABA355-42C7-4545-B0F6-9130E316D652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6ABA355-42C7-4545-B0F6-9130E316D652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6ABA355-42C7-4545-B0F6-9130E316D652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6ABA355-42C7-4545-B0F6-9130E316D652}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FA6DD3E-56AC-47EA-ACF7-1ABC8E4768CF} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
+		{11B98256-6635-48A4-BC7F-722A90CA8253} = {5FA6DD3E-56AC-47EA-ACF7-1ABC8E4768CF}
+		{A6ABA355-42C7-4545-B0F6-9130E316D652} = {5FA6DD3E-56AC-47EA-ACF7-1ABC8E4768CF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}
+	EndGlobalSection
+EndGlobal

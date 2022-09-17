@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IDbSeederService, DbSeederService>();
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -36,6 +38,8 @@ builder.Services.AddIdentityServer(options =>
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+app.MigrateDatabase<ApplicationDbContext>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

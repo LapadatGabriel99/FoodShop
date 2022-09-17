@@ -1,5 +1,9 @@
+using FoodShop.Services.Identity.Api;
 using FoodShop.Services.Identity.Api.Data;
+using FoodShop.Services.Identity.Api.Extension;
 using FoodShop.Services.Identity.Api.Models;
+using FoodShop.Services.Identity.Api.Services;
+using FoodShop.Services.Identity.Api.Services.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +18,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddIdentityServer(options =>
+{
+    options.Events.RaiseErrorEvents = true;
+    options.Events.RaiseInformationEvents = true;
+    options.Events.RaiseFailureEvents = true;
+    options.Events.RaiseSuccessEvents = true;
+    options.EmitStaticAudienceClaim = true;
+})
+    .AddInMemoryIdentityResources(Config.IdentityResources)
+    .AddInMemoryApiScopes(Config.ApiScopes)
+    .AddInMemoryClients(Config.Clients)
+    .AddAspNetIdentity<ApplicationUser>()
+    .AddDeveloperSigningCredential();
 
 builder.Services.AddRazorPages();
 
@@ -35,9 +53,5 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages().RequireAuthorization();
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryManagement", "Inve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumer", "Consumer", "{C5354A65-CF14-4F09-BB4E-864EEAFC34BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Web.User", "Clients\Web\UserManagement\FoodShop.Web\FoodShop.Web.User.csproj", "{C24B1450-6FBA-445B-ADA3-75E9C4E4007E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{11B98256-6635-48A4-BC7F-722A90CA8253}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B98256-6635-48A4-BC7F-722A90CA8253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B98256-6635-48A4-BC7F-722A90CA8253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{8ECFE583-0A7C-4B45-8402-7B90550EC781} = {9E453535-1C75-4F33-9B59-487CD226ED0A}
 		{D58F5E1B-86F2-4193-AA75-877D7624E165} = {9E453535-1C75-4F33-9B59-487CD226ED0A}
 		{C5354A65-CF14-4F09-BB4E-864EEAFC34BD} = {9E453535-1C75-4F33-9B59-487CD226ED0A}
+		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E} = {ED9E05F7-1764-41CF-B1B8-B21A3D758E91}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

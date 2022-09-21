@@ -33,6 +33,7 @@ builder.Services.AddIdentityServer(options =>
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddInMemoryClients(Config.Clients)
     .AddAspNetIdentity<ApplicationUser>()
+    .AddProfileService<ProfileService>()
     .AddDeveloperSigningCredential();
 
 builder.Services.AddRazorPages();
@@ -54,6 +55,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseIdentityServer();
 app.UseAuthorization();
 
 app.MapRazorPages().RequireAuthorization();

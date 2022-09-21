@@ -9,7 +9,9 @@ namespace FoodShop.Services.Identity.Api
         {
             new IdentityResources.OpenId(),
             new IdentityResources.Email(),
-            new IdentityResources.Profile()
+            new IdentityResources.Profile(),
+            new IdentityResources.Phone(),
+            new IdentityResources.Address(),
         };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -48,6 +50,8 @@ namespace FoodShop.Services.Identity.Api
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.Phone,
+                    IdentityServerConstants.StandardScopes.Address,
                     "foodShop.user.read",
                     "foodShop.user.create",
                     "foodShop.user.delete",
@@ -67,6 +71,8 @@ namespace FoodShop.Services.Identity.Api
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.Phone,
+                    IdentityServerConstants.StandardScopes.Address,
                     "foodShop.product.read",
                     "foodShop.product.create",
                     "foodShop.product.delete",
@@ -86,6 +92,8 @@ namespace FoodShop.Services.Identity.Api
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.Phone,
+                    IdentityServerConstants.StandardScopes.Address,
                     "foodShop.coupon.read",
                     "foodShop.coupon.create",
                     "foodShop.coupon.delete",
@@ -105,6 +113,8 @@ namespace FoodShop.Services.Identity.Api
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.Phone,
+                    IdentityServerConstants.StandardScopes.Address,
                     "foodShop.inventory.read",
                     "foodShop.inventory.create",
                     "foodShop.inventory.delete",
@@ -124,6 +134,8 @@ namespace FoodShop.Services.Identity.Api
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.Phone,
+                    IdentityServerConstants.StandardScopes.Address,
                     "foodShop.user.read",
                     "foodShop.product.read",
                     "foodShop.coupon.read",

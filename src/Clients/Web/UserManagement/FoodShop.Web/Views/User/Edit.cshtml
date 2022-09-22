@@ -1,0 +1,74 @@
+﻿@model UserModelDto
+
+<form asp-controller="User" asp-action="Edit">
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Edit User</h1>
+
+        <hr />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-6 pb-3">
+                <label asp-for="UserName" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="Email" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="FirstName" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="LastName" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="Password" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="ConfirmPassword" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="col-12 pb-3">
+                <label asp-for="Address" class="control-label pt-2" style="font-size:20px;"></label>
+                <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="Phone" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="col-6 pb-3">
+                <label asp-for="Role" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="col-5 offset-1">
+                <a asp-controller="User" asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Edit" class="btn btn-success form-control" />
+
+            </div>
+
+        </div>
+
+        <div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

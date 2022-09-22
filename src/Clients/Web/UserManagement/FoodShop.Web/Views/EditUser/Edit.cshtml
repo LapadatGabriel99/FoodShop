@@ -1,0 +1,31 @@
+﻿@model UserModelDto
+
+<br />
+<div class="container border p-3">
+    <h1 class="text-info">Edit User</h1>
+
+    <hr />
+    <input asp-for="Id" class="form-control" hidden />
+    <div class="row mt-4">
+        <div class="col-4 border p-3 m-2 ms-5">
+            <a asp-controller="EditUser" asp-action="ChangePassword" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Password</a>
+        </div>
+        <div class="col-2 m-2">
+
+        </div>
+        <div class="col-4 border p-3 m-2">
+            <a asp-controller="EditUser" asp-action="ChangeEmail" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Email</a>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-4 border p-3 m-2 ms-5">
+            <a asp-controller="EditUser" asp-action="ChangePhoneNumber" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Phone Number</a>
+        </div>
+        <div class="col-2 m-2">
+
+        </div>
+        <div class="col-4 border p-3 m-2">
+            <a asp-controller="EditUser" asp-action="ChangeBasicCredentials" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Basic Credentials</a>
+        </div>
+    </div>
+</div>

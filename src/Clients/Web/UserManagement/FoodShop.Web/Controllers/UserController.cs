@@ -2,6 +2,7 @@
 using FoodShop.Web.User.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FoodShop.Web.User.Controllers
 {
@@ -24,19 +25,38 @@ namespace FoodShop.Web.User.Controllers
             return View(users);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Edit()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([FromForm] UserModelDto userModelDto)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(userModelDto);
+            }
+
+            return View(userModelDto);
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var userDetails = await _userService.GetById("api/user/get", id);
+
+            return View(userDetails);
+        }
+
+        [HttpGet]
+        public IActionResult PersonalDetails()
+        {
+            var loggedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            return RedirectToAction(nameof(Details), "User", new { id = loggedUserId });
         }
     }
 }

@@ -51,5 +51,34 @@ namespace FoodShop.Services.User.Api.Controllers
 
             return Ok(dto);
         }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<ActionResult<UserModelDto>> Create([FromBody] UserModelDto userDto)
+        {
+            var userFromDto = _userConverterService.Convert(userDto);
+            var user = await _userService.Create(userFromDto);
+            var userDtoFromUser = _userConverterService.Convert(user);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<ActionResult<UserModelDto>> Update([FromBody] UserModelDto userDto)
+        {
+            var userFromDto = _userConverterService.Convert(userDto);
+            var user = await _userService.Update(userFromDto);
+            var userDtoFromUser = _userConverterService.Convert(user);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<ActionResult<bool>> Delete(string id)
+        {
+            return await _userService.Delete(id);
+        }
     }
 }

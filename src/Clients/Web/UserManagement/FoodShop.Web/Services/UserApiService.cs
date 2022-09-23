@@ -25,5 +25,10 @@ namespace FoodShop.Web.User.Services
         {
             return await _httpClient.GetAsync<UserModelDto>($"{route}/{id}");
         }
+
+        public async Task<UserModelDto> Create(string route, UserModelDto input)
+        {
+            return await _httpClient.PostAsync<UserModelDto, UserModelDto>(route, input);
+        }
     }
 }

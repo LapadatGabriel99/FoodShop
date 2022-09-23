@@ -7,5 +7,7 @@ namespace FoodShop.Web.User.Services.Contracts
         Task<IEnumerable<UserModelDto>> GetAll(string route);
 
         Task<UserModelDto> GetById(string route, string id);
+
+        Task<UserModelDto> Create(string route, UserModelDto input);
     }
 }

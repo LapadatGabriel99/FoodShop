@@ -28,5 +28,12 @@ namespace FoodShop.Web.User.Services
 
             return user;
         }
+
+        public async Task<UserModelDto> Create(string route, UserModelDto input)
+        {
+            var user = await _userApiService.Create(route, input);
+
+            return user;
+        }
     }
 }

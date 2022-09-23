@@ -10,6 +10,7 @@ using FoodShop.Services.User.Api.Services;
 using FoodShop.Services.User.Api.Services.Contracts;
 using FoodShop.Services.User.Api.Specification;
 using FoodShop.Services.User.Api.Specification.Contracts;
+using FoodShop.Services.User.Api.Web.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -107,7 +108,10 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalExceptionFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

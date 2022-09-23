@@ -40,7 +40,9 @@ namespace FoodShop.Web.User.Controllers
                 return View(userModelDto);
             }
 
-            return View(userModelDto);
+            await _userService.Create("api/user/create", userModelDto);
+
+            return RedirectToAction("Success", "Response", new { message = "User created successfully" });
         }
 
         [HttpGet]

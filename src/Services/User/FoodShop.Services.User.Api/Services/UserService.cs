@@ -3,6 +3,7 @@ using FoodShop.Services.User.Api.Services.Contracts;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Security.Claims;
 
 namespace FoodShop.Services.User.Api.Services
@@ -29,16 +30,19 @@ namespace FoodShop.Services.User.Api.Services
                 await _roleManager.CreateAsync(new IdentityRole(user.Role));
             }
 
+            user.ApplicationUser.PhoneNumberConfirmed = true;
+            user.ApplicationUser.EmailConfirmed = true;
+
             await _userManager.CreateAsync(user.ApplicationUser, user.Password);
             await _userManager.AddToRoleAsync(user.ApplicationUser, user.Role);
             await _userManager.AddClaimsAsync(user.ApplicationUser, new Claim[]
             {
-                new Claim(JwtClaimTypes.Name, user.ApplicationUser.FirstName + " " + user.ApplicationUser.LastName),
-                new Claim(JwtClaimTypes.GivenName, user.ApplicationUser.FirstName),
-                new Claim(JwtClaimTypes.FamilyName, user.ApplicationUser.LastName),
-                new Claim(JwtClaimTypes.Role, Role.UserMangementAdmin),
-                new Claim(JwtClaimTypes.Address, user.ApplicationUser.Address),
-                new Claim(JwtClaimTypes.PhoneNumber, user.ApplicationUser.PhoneNumber)
+            new Claim(JwtClaimTypes.Name, user.ApplicationUser.FirstName + " " + user.ApplicationUser.LastName),
+            new Claim(JwtClaimTypes.GivenName, user.ApplicationUser.FirstName),
+            new Claim(JwtClaimTypes.FamilyName, user.ApplicationUser.LastName),
+            new Claim(JwtClaimTypes.Role, Role.UserMangementAdmin),
+            new Claim(JwtClaimTypes.Address, user.ApplicationUser.Address),
+            new Claim(JwtClaimTypes.PhoneNumber, user.ApplicationUser.PhoneNumber)
             });
 
             return user;

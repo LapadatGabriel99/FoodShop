@@ -1,4 +1,6 @@
 using FoodShop.Services.User.Api;
+using FoodShop.Services.User.Api.Authorization.Handlers;
+using FoodShop.Services.User.Api.Authorization.Requirements;
 using FoodShop.Services.User.Api.Converters;
 using FoodShop.Services.User.Api.Converters.Contracts;
 using FoodShop.Services.User.Api.Data;
@@ -7,11 +9,14 @@ using FoodShop.Services.User.Api.Filters;
 using FoodShop.Services.User.Api.Filters.Contracts;
 using FoodShop.Services.User.Api.Models;
 using FoodShop.Services.User.Api.Services;
+using FoodShop.Services.User.Api.Services.Authorization;
 using FoodShop.Services.User.Api.Services.Contracts;
+using FoodShop.Services.User.Api.Services.Contracts.Authorization;
 using FoodShop.Services.User.Api.Specification;
 using FoodShop.Services.User.Api.Specification.Contracts;
 using FoodShop.Services.User.Api.Web.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -58,8 +63,10 @@ builder.Services.AddTransient<IUserFilterService, UserFilterService>();
 
 builder.Services.AddScoped<IConverter<UserModelDto, UserModel>, UserModelDtoToUserModelConverter>();
 builder.Services.AddScoped<IConverter<UserModel, UserModelDto>, UserModelToUserModelDtoConverter>();
+builder.Services.AddScoped<IConverter<UpdateBasicCredentialsDto, UserModel>, UpdateBasicCredentialsDtoToUserModelConverter>();
 builder.Services.AddScoped<IObjectConverterService, ObjectConverterService>();
 builder.Services.AddScoped<IUserConverterService, UserConverterService>();
+builder.Services.AddScoped<IUserPermissionService, UserPermissionService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddAuthentication(options => {
@@ -75,6 +82,8 @@ builder.Services.AddAuthentication(options => {
             ValidateAudience = false
         };
     });
+builder.Services.AddScoped<IAuthorizationHandler, SameUserIdAndUserManagementAdminRoleHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, SameUserIdHandler>();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -88,6 +97,7 @@ builder.Services.AddAuthorization(options =>
     {
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", "foodShop.user.read");
+        policy.AddRequirements(new SameUserIdAndUserManagementAdminRoleRequirement());
     });
     options.AddPolicy("User.Create.Admin", policy =>
     {
@@ -99,12 +109,14 @@ builder.Services.AddAuthorization(options =>
     {
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", "foodShop.user.update");
+        policy.AddRequirements(new SameUserIdRequirement());
     });
     options.AddPolicy("User.Delete.Admin", policy =>
     {
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", "foodShop.user.delete");
         policy.RequireRole(Role.UserMangementAdmin);
+        policy.AddRequirements(new DifferentUserIdRequirement());
     });
 });
 

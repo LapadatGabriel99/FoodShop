@@ -10,15 +10,18 @@ namespace FoodShop.Services.User.Api.Services
         private readonly IObjectConverterService _objectConverterService;
         private readonly IConverter<UserModelDto, UserModel> _userModelDtoToUserModelConverter;
         private readonly IConverter<UserModel, UserModelDto> _userModelToUserModelDtoConverter;
+        private readonly IConverter<UpdateBasicCredentialsDto, UserModel> _updateBasicCredentialsDtoToUserModelConverter;
 
         public UserConverterService(
             IObjectConverterService objectConverterService,
             IConverter<UserModelDto, UserModel> userModelDtoToUserModelConverter,
-            IConverter<UserModel, UserModelDto> userModelToUserModelDtoConverter)
+            IConverter<UserModel, UserModelDto> userModelToUserModelDtoConverter,
+            IConverter<UpdateBasicCredentialsDto, UserModel> updateBasicCredentialsDtoToUserModelConverter)
         {
             _objectConverterService = objectConverterService;
             _userModelDtoToUserModelConverter = userModelDtoToUserModelConverter;
             _userModelToUserModelDtoConverter = userModelToUserModelDtoConverter;
+            _updateBasicCredentialsDtoToUserModelConverter = updateBasicCredentialsDtoToUserModelConverter;
         }
 
         public UserModel Convert(UserModelDto source)
@@ -39,6 +42,11 @@ namespace FoodShop.Services.User.Api.Services
         public IEnumerable<UserModelDto> Convert(IEnumerable<UserModel> source)
         {
             return _objectConverterService.Convert(_userModelToUserModelDtoConverter, source);
+        }
+
+        public UserModel Convert(UpdateBasicCredentialsDto source)
+        {
+            return _objectConverterService.Convert(_updateBasicCredentialsDtoToUserModelConverter, source);
         }
     }
 }

@@ -11,7 +11,6 @@ namespace FoodShop.Services.User.Api.Controllers
 {
     [ApiController]
     [Route("api/user")]
-    [Authorize(Roles = Role.UserMangementAdmin)]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -33,6 +32,7 @@ namespace FoodShop.Services.User.Api.Controllers
 
         [HttpGet]
         [Route("get-all")]
+        [Authorize(Policy = PolicyList.UserReadAdmin)]
         public async Task<ActionResult<IEnumerable<UserModelDto>>> Get()
         {
             var users = await _userService.GetAll();
@@ -44,6 +44,7 @@ namespace FoodShop.Services.User.Api.Controllers
 
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(Policy = PolicyList.UserRead)]
         public async Task<ActionResult<UserModelDto>> Get(string id)
         {
             var user = await _userService.Get(id);
@@ -54,6 +55,7 @@ namespace FoodShop.Services.User.Api.Controllers
 
         [HttpPost]
         [Route("create")]
+        [Authorize(Policy = PolicyList.UserCreateAdmin)]
         public async Task<ActionResult<UserModelDto>> Create([FromBody] UserModelDto userDto)
         {
             var userFromDto = _userConverterService.Convert(userDto);
@@ -64,11 +66,45 @@ namespace FoodShop.Services.User.Api.Controllers
         }
 
         [HttpPut]
-        [Route("update")]
-        public async Task<ActionResult<UserModelDto>> Update([FromBody] UserModelDto userDto)
+        [Route("update-username")]
+        [Authorize(Policy = PolicyList.UserUpdate)]
+        public async Task<ActionResult<UserModelDto>> UpdateUserName([FromBody] UpdateUserNameDto dto)
+        {
+            var user = await _userService.UpdateUserName(dto.Id, dto.UserName);
+            var userDtoFromUser = _userConverterService.Convert(user);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpPut]
+        [Route("update-email")]
+        [Authorize(Policy = PolicyList.UserUpdate)]
+        public async Task<ActionResult<UserModelDto>> UpdateEmail([FromBody] UpdateEmailDto dto)
+        {
+            var user = await _userService.UpdateEmail(dto.Id, dto.Email, dto.Token);
+            var userDtoFromUser = _userConverterService.Convert(user);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpPut]
+        [Route("update-phone-number")]
+        [Authorize(Policy = PolicyList.UserUpdate)]
+        public async Task<ActionResult<UserModelDto>> UpdatePhoneNumber([FromBody] UpdatePhoneNumberDto dto)
+        {
+            var user = await _userService.UpdateEmail(dto.Id, dto.PhoneNumber, dto.Token);
+            var userDtoFromUser = _userConverterService.Convert(user);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpPut]
+        [Route("update-basic-credentials")]
+        [Authorize(Policy = PolicyList.UserUpdate)]
+        public async Task<ActionResult<UserModelDto>> Update([FromBody] UpdateBasicCredentialsDto userDto)
         {
             var userFromDto = _userConverterService.Convert(userDto);
-            var user = await _userService.Update(userFromDto);
+            var user = await _userService.UpdateBasicCredentials(userFromDto);
             var userDtoFromUser = _userConverterService.Convert(user);
 
             return Ok(userDtoFromUser);
@@ -76,6 +112,7 @@ namespace FoodShop.Services.User.Api.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(Policy = PolicyList.UserDeleteAdmin)]
         public async Task<ActionResult<bool>> Delete(string id)
         {
             return await _userService.Delete(id);

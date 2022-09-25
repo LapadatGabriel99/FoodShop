@@ -13,5 +13,7 @@ namespace FoodShop.Services.User.Api.Services.Contracts
         IEnumerable<UserModel> Convert(IEnumerable<UserModelDto> source);
 
         IEnumerable<UserModelDto> Convert(IEnumerable<UserModel> source);
+
+        UserModel Convert(UpdateBasicCredentialsDto source);
     }
 }

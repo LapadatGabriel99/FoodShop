@@ -80,9 +80,65 @@ namespace FoodShop.Services.User.Api.Services
             return userModels;
         }
 
-        public async Task<UserModel> Update(UserModel user)
+        public async Task<UserModel> UpdateBasicCredentials(UserModel user)
         {
             await _userManager.UpdateAsync(user.ApplicationUser);
+
+            return user;
+        }
+
+        public async Task<UserModel> UpdateUserName(string id, string userName)
+        {
+            var user = await Get(id);
+
+            var result = await _userManager.SetUserNameAsync(user.ApplicationUser, userName);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Could not update username of user with id: {id}");
+            }
+
+            return user;
+        }
+
+        public async Task<UserModel> UpdateEmail(string id, string email, string token)
+        {
+            var user = await Get(id);
+
+            var result = await _userManager.ChangeEmailAsync(user.ApplicationUser, email, token);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Could not update email of user with id: {id}");
+            }
+
+            return user;
+        }
+
+        public async Task<UserModel> UpdatePassword(string id, string password, string newPassword)
+        {
+            var user = await Get(id);
+
+            var result = await _userManager.ChangePasswordAsync(user.ApplicationUser, password, newPassword);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Could not update password of user with id: {id}");
+            }
+
+            return await Get(id);
+        }
+
+        public async Task<UserModel> UpdatePhoneNumber(string id, string phoneNumber, string token)
+        {
+            var user = await Get(id);
+
+            var result = await _userManager.ChangePhoneNumberAsync(user.ApplicationUser, phoneNumber, token);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Could not update password of user with id: {id}");
+            }
 
             return user;
         }

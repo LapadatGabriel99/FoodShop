@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{3D902810-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Services.User.Api", "Services\User\FoodShop.Services.User.Api\FoodShop.Services.User.Api.csproj", "{7A3DD34C-73F1-439E-AD51-8754703C1B5B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Product.Api", "Services\Product\FoodShop.Services.Product.Api\FoodShop.Services.Product.Api.csproj", "{04A26D06-4945-43E2-9CBE-83607E98C567}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{7A3DD34C-73F1-439E-AD51-8754703C1B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A3DD34C-73F1-439E-AD51-8754703C1B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A3DD34C-73F1-439E-AD51-8754703C1B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A26D06-4945-43E2-9CBE-83607E98C567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A26D06-4945-43E2-9CBE-83607E98C567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A26D06-4945-43E2-9CBE-83607E98C567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A26D06-4945-43E2-9CBE-83607E98C567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,8 @@ Global
 		{C24B1450-6FBA-445B-ADA3-75E9C4E4007E} = {ED9E05F7-1764-41CF-B1B8-B21A3D758E91}
 		{3D902810-1162-4EC2-9504-27EDEE92FE45} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
 		{7A3DD34C-73F1-439E-AD51-8754703C1B5B} = {3D902810-1162-4EC2-9504-27EDEE92FE45}
+		{D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
+		{04A26D06-4945-43E2-9CBE-83607E98C567} = {D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

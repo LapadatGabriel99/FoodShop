@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{D15F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Product.Api", "Services\Product\FoodShop.Services.Product.Api\FoodShop.Services.Product.Api.csproj", "{04A26D06-4945-43E2-9CBE-83607E98C567}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Web.Product", "Clients\Web\ProductManagement\WebApplication1\FoodShop.Web.Product.csproj", "{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{04A26D06-4945-43E2-9CBE-83607E98C567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04A26D06-4945-43E2-9CBE-83607E98C567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04A26D06-4945-43E2-9CBE-83607E98C567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{7A3DD34C-73F1-439E-AD51-8754703C1B5B} = {3D902810-1162-4EC2-9504-27EDEE92FE45}
 		{D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
 		{04A26D06-4945-43E2-9CBE-83607E98C567} = {D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6}
+		{AD3BAD0C-FE89-46FF-A83A-F7C99200DB1A} = {9CE4419E-0173-4CD8-A3C1-B6798F3F4137}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

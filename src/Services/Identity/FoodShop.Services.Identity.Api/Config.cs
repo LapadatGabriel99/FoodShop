@@ -63,9 +63,9 @@ namespace FoodShop.Services.Identity.Api
                 ClientId = "foodShop-Product-Management-Admin",
                 ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = { "https://localhost:port/signin-oidc" },
-                FrontChannelLogoutUri = "https://localhost:port/signout-oidc",
-                PostLogoutRedirectUris = { "https://localhost:port/signout-callback-oidc" },
+                RedirectUris = { "https://localhost:44320/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:44320/signout-oidc",
+                PostLogoutRedirectUris = { "https://localhost:44320/signout-callback-oidc" },
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,

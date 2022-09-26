@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace FoodShop.Web.User.Controllers
 {
-    [Authorize(Roles = Role.UserMangementAdmin)]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -18,6 +18,7 @@ namespace FoodShop.Web.User.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = Role.UserMangementAdmin)]
         public async Task<IActionResult> Index()
         {
             var users = await _userService.GetAll("api/user/get-all");
@@ -26,6 +27,7 @@ namespace FoodShop.Web.User.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Role.UserMangementAdmin)]
         public IActionResult Create()
         {
             return View();
@@ -33,6 +35,7 @@ namespace FoodShop.Web.User.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Role.UserMangementAdmin)]
         public async Task<IActionResult> Create([FromForm] UserModelDto userModelDto)
         {
             if (!ModelState.IsValid)
@@ -46,6 +49,7 @@ namespace FoodShop.Web.User.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             var userDetails = await _userService.GetById("api/user/get", id);
@@ -54,6 +58,7 @@ namespace FoodShop.Web.User.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult PersonalDetails()
         {
             var loggedUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

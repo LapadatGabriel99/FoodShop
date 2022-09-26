@@ -1,4 +1,5 @@
-﻿@model UserModelDto
+﻿@using System.Security.Claims
+@model UserModelDto
 
 <br />
 <div class="container border p-3">
@@ -35,14 +36,25 @@
             <label asp-for="Role" class="control-label pt-2" style="font-size:20px;"></label>
             <input asp-for="Role" class="form-control" disabled />
         </div>
-        <div class="col-3">
-            <a asp-controller="User" asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
-        </div>
-        <div class="col-3">
-            <a asp-controller="EditUser" asp-action="Edit" class="btn-primary btn form-control" asp-route-id="@Model.Id">Edit Profile</a>
-        </div>
+        @if (Model.Id == User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+        {
+            <div class="col-3">
+                <a asp-controller="Home" asp-action="Index" class="btn-primary btn form-control ">Back to Home</a>
+            </div>
+            <div class="col-3">
+                <a asp-controller="EditUser" asp-action="Edit" class="btn-primary btn form-control" asp-route-id="@Model.Id">Edit Profile</a>
+            </div>
+        }
+        else 
+        {
+            <div class="col-3">
+                <a asp-controller="User" asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-3">
+                <a asp-controller="RequestProfileChange" asp-action="ChangeProfile" class="btn-primary btn form-control" asp-route-id="@Model.Id">Request Profile Changes</a>
+            </div>
+        }
     </div>
-
     <div>
     </div>
 </div>

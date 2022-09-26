@@ -28,4 +28,12 @@
             <a asp-controller="EditUser" asp-action="ChangeBasicCredentials" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Basic Credentials</a>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-4 border p-3 m-2 ms-5">
+            <a asp-controller="EditUser" asp-action="ChangeUserName" class="btn-success btn form-control" asp-route-id="@Model.Id">Change Username</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <a asp-controller="User" asp-action="Details" class="btn-info btn btn-lg text-white mt-4" asp-route-id="@Model.Id">Go back</a>
 </div>

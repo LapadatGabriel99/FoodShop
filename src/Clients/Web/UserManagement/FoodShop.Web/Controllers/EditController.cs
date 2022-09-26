@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodShop.Web.User.Controllers
 {
-    [Authorize(Roles = Role.UserMangementAdmin)]
+    [Authorize]
     public class EditUserController : Controller
     {
         private readonly ILogger<EditUserController> _logger;
@@ -44,6 +44,12 @@ namespace FoodShop.Web.User.Controllers
 
         [HttpGet]
         public IActionResult ChangeBasicCredentials(string id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ChangeUserName(string id)
         {
             return View();
         }

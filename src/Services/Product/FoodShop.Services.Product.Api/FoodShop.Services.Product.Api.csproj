@@ -28,6 +28,14 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Authorization\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Web\" />
+    <Folder Include="Specifications\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

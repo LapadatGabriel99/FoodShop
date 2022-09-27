@@ -1,9 +1,10 @@
-﻿using FoodShop.Services.Product.Api.Models;
+﻿using FoodShop.Services.Product.Api.Data.Contracts;
+using FoodShop.Services.Product.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodShop.Services.Product.Api.Data
 {
-    public sealed class ApplicationDbContext : DbContext
+    public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public DbSet<Models.Product> Products { get; set; }
 

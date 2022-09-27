@@ -1,4 +1,14 @@
 using FoodShop.Services.Product.Api.Data;
+using FoodShop.Services.Product.Api.Repository;
+using FoodShop.Services.Product.Api.Repository.Categories;
+using FoodShop.Services.Product.Api.Repository.Contracts;
+using FoodShop.Services.Product.Api.Repository.Contracts.Categories;
+using FoodShop.Services.Product.Api.Repository.Contracts.Products;
+using FoodShop.Services.Product.Api.Repository.Products;
+using FoodShop.Services.Product.Api.Services.Cateogries;
+using FoodShop.Services.Product.Api.Services.Contracts.Categories;
+using FoodShop.Services.Product.Api.Services.Contracts.Products;
+using FoodShop.Services.Product.Api.Services.Products;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +20,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(options => {

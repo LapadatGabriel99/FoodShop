@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodShop.Services.Product.Api.Models.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodShop.Services.Product.Api.Models
 {
-    public class Category
+    public class Category : IEntity
     {
         [Key]
         public string Id { get; set; }

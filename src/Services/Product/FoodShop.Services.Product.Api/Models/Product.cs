@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FoodShop.Services.Product.Api.Models
 {
-    public class Product : IEntity
+    public class Product : IEntity, ICanConvert
     {
         [Key]
         public string Id { get; set; }

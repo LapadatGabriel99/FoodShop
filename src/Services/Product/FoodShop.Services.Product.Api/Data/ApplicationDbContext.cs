@@ -19,6 +19,20 @@ namespace FoodShop.Services.Product.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Models.Product>()
+                .HasIndex(x => x.Name)
+                .IsUnique();
+            modelBuilder.Entity<Category>()
+                .HasIndex(x => x.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Models.Product>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Category>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<ProductCategories>()
                 .HasKey(x => new { x.ProductId, x.CategoryId });
             modelBuilder.Entity<Models.Product>()

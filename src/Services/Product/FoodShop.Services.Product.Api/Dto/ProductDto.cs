@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodShop.Services.Product.Api.Models.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodShop.Services.Product.Api.Dto
 {
-    public class ProductDto
+    public class ProductDto : ICanConvert
     {
         public string Id { get; set; }
 

@@ -21,8 +21,8 @@ namespace FoodShop.Services.Product.Api.Repository.Contracts
                                        bool disableTracking = true);
         Task<TEntity> GetByIdAsync(object id);
         Task<TEntity> AddAsync(TEntity entity);
-        Task UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
+        Task<TEntity> UpdateAsync(TEntity entity);
+        Task<bool> DeleteAsync(TEntity entity);
 
         Task<int> SavaChangesAsync();
     }

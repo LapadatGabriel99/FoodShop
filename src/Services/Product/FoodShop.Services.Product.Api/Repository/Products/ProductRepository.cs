@@ -20,44 +20,44 @@ namespace FoodShop.Services.Product.Api.Repository.Products
             return await _genericRepository.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Models.Product entity)
+        public async Task<bool> DeleteAsync(Models.Product entity)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.DeleteAsync(entity);
         }
 
-        public Task<IReadOnlyList<Models.Product>> GetAllAsync()
+        public async Task<IReadOnlyList<Models.Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _genericRepository.GetAllAsync();
         }
 
-        public Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate)
+        public async Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.GetAsync(predicate);
         }
 
-        public Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate = null, Func<IQueryable<Models.Product>, IOrderedQueryable<Models.Product>> orderBy = null, string includeString = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate = null, Func<IQueryable<Models.Product>, IOrderedQueryable<Models.Product>> orderBy = null, string includeString = null, bool disableTracking = true)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.GetAsync(predicate, orderBy, includeString, disableTracking);
         }
 
-        public Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate = null, Func<IQueryable<Models.Product>, IOrderedQueryable<Models.Product>> orderBy = null, List<Expression<Func<Models.Product, object>>> includes = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<Models.Product>> GetAsync(Expression<Func<Models.Product, bool>> predicate = null, Func<IQueryable<Models.Product>, IOrderedQueryable<Models.Product>> orderBy = null, List<Expression<Func<Models.Product, object>>> includes = null, bool disableTracking = true)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.GetAsync(predicate, orderBy, includes, disableTracking);
         }
 
-        public Task<Models.Product> GetByIdAsync(object id)
+        public async Task<Models.Product> GetByIdAsync(object id)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.GetByIdAsync(id);
         }
 
-        public Task<int> SavaChangesAsync()
+        public async Task<int> SavaChangesAsync()
         {
-            throw new NotImplementedException();
+            return await _genericRepository.SavaChangesAsync();
         }
 
-        public Task UpdateAsync(Models.Product entity)
+        public async Task<Models.Product> UpdateAsync(Models.Product entity)
         {
-            throw new NotImplementedException();
+            return await _genericRepository.UpdateAsync(entity);
         }
     }
 }

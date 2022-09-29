@@ -1,4 +1,9 @@
+using FoodShop.Services.Product.Api.Converters.Categories;
+using FoodShop.Services.Product.Api.Converters.Contracts;
+using FoodShop.Services.Product.Api.Converters.Products;
 using FoodShop.Services.Product.Api.Data;
+using FoodShop.Services.Product.Api.Dto;
+using FoodShop.Services.Product.Api.Models;
 using FoodShop.Services.Product.Api.Repository;
 using FoodShop.Services.Product.Api.Repository.Categories;
 using FoodShop.Services.Product.Api.Repository.Contracts;
@@ -7,7 +12,13 @@ using FoodShop.Services.Product.Api.Repository.Contracts.Products;
 using FoodShop.Services.Product.Api.Repository.Products;
 using FoodShop.Services.Product.Api.Services.Cateogries;
 using FoodShop.Services.Product.Api.Services.Contracts.Categories;
+using FoodShop.Services.Product.Api.Services.Contracts.Converters;
+using FoodShop.Services.Product.Api.Services.Contracts.Converters.Categories;
+using FoodShop.Services.Product.Api.Services.Contracts.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Contracts.Products;
+using FoodShop.Services.Product.Api.Services.Converters;
+using FoodShop.Services.Product.Api.Services.Converters.Categories;
+using FoodShop.Services.Product.Api.Services.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Products;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +35,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<IConverter<ProductDto, Product>, ProductDtoToProductConverter>();
+builder.Services.AddScoped<IConverter<Product, ProductDto>, ProductToProductDtoConverter>();
+builder.Services.AddScoped<IConverter<CategoryDto, Category>, CategoryDtoToCategoryConverter>();
+builder.Services.AddScoped<IConverter<Category, CategoryDto>, CategoryToCategoryDtoConverter>();
+builder.Services.AddScoped<IObjectConverterService, ObjectConverterService>();
+builder.Services.AddScoped<IProductConverterService, ProductConverterService>();
+builder.Services.AddScoped<ICategoryConverterService, CategoryConverterService>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();

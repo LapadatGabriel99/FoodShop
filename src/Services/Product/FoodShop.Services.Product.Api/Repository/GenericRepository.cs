@@ -3,6 +3,7 @@ using FoodShop.Services.Product.Api.Models.Contracts;
 using FoodShop.Services.Product.Api.Repository.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace FoodShop.Services.Product.Api.Repository
 {
@@ -25,10 +26,12 @@ namespace FoodShop.Services.Product.Api.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task<bool> DeleteAsync(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
-            await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
+
+            return result > 0;
         }
 
         public async Task<IReadOnlyList<TEntity>> GetAllAsync()
@@ -100,10 +103,12 @@ namespace FoodShop.Services.Product.Api.Repository
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         public async Task<int> SavaChangesAsync()

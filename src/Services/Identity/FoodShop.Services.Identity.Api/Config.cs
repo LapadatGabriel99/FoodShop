@@ -39,6 +39,7 @@ namespace FoodShop.Services.Identity.Api
         {
             new Client
             {
+                AccessTokenLifetime = 300,
                 ClientId = "foodShop-User-Management-Admin",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -56,16 +57,18 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.user.create",
                     "foodShop.user.delete",
                     "foodShop.user.update",
-                }
+                },
+                AllowOfflineAccess = true
             },
             new Client
             {
+                AccessTokenLifetime = 300,
                 ClientId = "foodShop-Product-Management-Admin",
                 ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = { "https://localhost:44320/signin-oidc" },
-                FrontChannelLogoutUri = "https://localhost:44320/signout-oidc",
-                PostLogoutRedirectUris = { "https://localhost:44320/signout-callback-oidc" },
+                RedirectUris = { "https://localhost:44393/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:44393/signout-oidc",
+                PostLogoutRedirectUris = { "https://localhost:44393/signout-callback-oidc" },
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
@@ -77,10 +80,12 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.product.create",
                     "foodShop.product.delete",
                     "foodShop.product.update",
-                }
+                },
+                AllowOfflineAccess = true
             },
             new Client
             {
+                AccessTokenLifetime = 300,
                 ClientId = "foodShop-Coupon-Management-Admin",
                 ClientSecrets = { new Secret("511536EF-0C79-F270-80CA-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -98,10 +103,12 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.coupon.create",
                     "foodShop.coupon.delete",
                     "foodShop.coupon.update",
-                }
+                },
+                AllowOfflineAccess = true
             }, 
             new Client
             {
+                AccessTokenLifetime = 300,
                 ClientId = "foodShop-Inventory-Management-Admin",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4058-A3D6-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -119,10 +126,12 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.inventory.create",
                     "foodShop.inventory.delete",
                     "foodShop.inventory.update",
-                }
+                },
+                AllowOfflineAccess = true
             },
             new Client
             {
+                AccessTokenLifetime = 300,
                 ClientId = "foodShop-Customer",
                 ClientSecrets = { new Secret("511536EF-A3D6-0C79-F270-A37998FB86B0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -140,7 +149,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.product.read",
                     "foodShop.coupon.read",
                     "foodShop.inventory.read",
-                }
+                },
+                AllowOfflineAccess = true
             }
         };
     }

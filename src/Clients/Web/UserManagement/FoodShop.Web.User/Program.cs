@@ -55,6 +55,7 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Add("foodShop.user.create");
         options.Scope.Add("foodShop.user.delete");
         options.Scope.Add("foodShop.user.update");
+        options.Scope.Add("offline_access");
         options.ClaimActions.MapUniqueJsonKey("role", "role");
         options.SaveTokens = true;
     });

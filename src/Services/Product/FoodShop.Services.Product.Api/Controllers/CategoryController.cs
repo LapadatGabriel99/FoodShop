@@ -69,7 +69,7 @@ namespace FoodShop.Services.Product.Api.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("update")]
         public async Task<ActionResult<GenericResponseDto<CategoryDto>>> Update([FromBody] CategoryDto dto)
         {

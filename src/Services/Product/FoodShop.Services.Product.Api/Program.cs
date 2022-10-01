@@ -1,3 +1,4 @@
+using FoodShop.Services.Product.Api.Authorization.Filters.Exceptions;
 using FoodShop.Services.Product.Api.Converters.Categories;
 using FoodShop.Services.Product.Api.Converters.Contracts;
 using FoodShop.Services.Product.Api.Converters.Products;
@@ -62,7 +63,10 @@ builder.Services.AddAuthentication(options => {
         };
     });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalExceptionFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

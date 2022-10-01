@@ -1,0 +1,26 @@
+﻿@model CategoryDto
+
+<form asp-controller="Category" asp-action="Create">
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Create Category</h1>
+
+        <hr />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-12 pb-3">
+                <label asp-for="Name" class="control-label pt-2" style="font-size:20px;"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

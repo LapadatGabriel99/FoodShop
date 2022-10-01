@@ -1,10 +1,37 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
+using FoodShop.Web.Product.Services;
+using FoodShop.Web.Product.Services.Contracts;
+using FoodShop.Web.Product.Services.Contracts.Filters;
+using FoodShop.Web.Product.Services.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IIdentityServerApiService, IdentityServerApiService>();
+
+builder.Services.AddHttpClient<IIdentityServerApiService, IdentityServerApiService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ServiceUrls:IdentityServerApi"]);
+});
+
+builder.Services.AddScoped<JwtTokenHeaderHandlerService>();
+
+builder.Services.AddScoped<IProductApiService, ProductApiService>();
+
+builder.Services.AddHttpClient<IProductApiService, ProductApiService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductManagementApi"]);
+})
+    .AddHttpMessageHandler<JwtTokenHeaderHandlerService>();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IGenericResponseHandlerService, GenericResponseHandlerService>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(options =>

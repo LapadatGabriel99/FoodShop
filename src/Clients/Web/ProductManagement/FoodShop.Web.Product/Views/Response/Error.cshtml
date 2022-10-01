@@ -1,0 +1,8 @@
+﻿@model ErrorResponseModel
+
+<div class="container border p-3">
+    <div class="alert alert-danger">
+        @Model.Message
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="btn-primary btn btn-lg form-control w-25 offset-4">Back to List</a>
+</div>

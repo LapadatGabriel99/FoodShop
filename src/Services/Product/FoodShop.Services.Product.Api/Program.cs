@@ -4,6 +4,7 @@ using FoodShop.Services.Product.Api.Converters.Contracts;
 using FoodShop.Services.Product.Api.Converters.Products;
 using FoodShop.Services.Product.Api.Data;
 using FoodShop.Services.Product.Api.Dto;
+using FoodShop.Services.Product.Api.Extensions;
 using FoodShop.Services.Product.Api.Models;
 using FoodShop.Services.Product.Api.Repository;
 using FoodShop.Services.Product.Api.Repository.Categories;
@@ -19,11 +20,13 @@ using FoodShop.Services.Product.Api.Services.Contracts.Converters;
 using FoodShop.Services.Product.Api.Services.Contracts.Converters.Categories;
 using FoodShop.Services.Product.Api.Services.Contracts.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Contracts.Products;
+using FoodShop.Services.Product.Api.Services.Contracts.Seeder;
 using FoodShop.Services.Product.Api.Services.Contracts.Transaction;
 using FoodShop.Services.Product.Api.Services.Converters;
 using FoodShop.Services.Product.Api.Services.Converters.Categories;
 using FoodShop.Services.Product.Api.Services.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Products;
+using FoodShop.Services.Product.Api.Services.Seeder;
 using FoodShop.Services.Product.Api.Services.Transaction;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +58,7 @@ builder.Services.AddScoped<IUserAuthorizationService, UserAuthorizationService>(
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IDbSeederService, DbSeederService>();
 
 // Add services to the container.
 builder.Services.AddAuthentication(options => {
@@ -110,6 +114,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+app.MigrateDatabase<ApplicationDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -33,7 +33,7 @@ namespace FoodShop.Services.Identity.Api.Services
             var adminUser = new ApplicationUser()
             {
                 UserName = "UserAdmin",
-                Email = "userAdmin@gmail.com",
+                Email = "lapadatrobert123@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "07707721654",
                 FirstName = "Gabi",
@@ -57,7 +57,7 @@ namespace FoodShop.Services.Identity.Api.Services
             var adminUser2 = new ApplicationUser()
             {
                 UserName = "UserAdmin2",
-                Email = "userAdmin2@gmail.com",
+                Email = "lapadatrobert123@googlemail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "07707721654",
                 FirstName = "Alex",
@@ -81,7 +81,7 @@ namespace FoodShop.Services.Identity.Api.Services
             var adminUser3 = new ApplicationUser()
             {
                 UserName = "UserAdmin3",
-                Email = "userAdmin3@gmail.com",
+                Email = "lapadatrobert123+@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "07707721654",
                 FirstName = "Robert",

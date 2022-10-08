@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Web.User", "Client
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{676D508B-8EBA-48F7-8BBF-411B499AA7CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Identity.Email.Api", "Services\Email\FoodShop.Services.Identity.Email.Api\FoodShop.Services.Identity.Email.Api.csproj", "{B39C05C0-393E-4AAE-B21F-9424B530FC95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{9EEBDAD3-403D-4418-8540-848F2628EDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EEBDAD3-403D-4418-8540-848F2628EDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EEBDAD3-403D-4418-8540-848F2628EDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39C05C0-393E-4AAE-B21F-9424B530FC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39C05C0-393E-4AAE-B21F-9424B530FC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39C05C0-393E-4AAE-B21F-9424B530FC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39C05C0-393E-4AAE-B21F-9424B530FC95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{AADA0E6D-4718-47B3-A5FB-3CBADF85D695} = {9CE4419E-0173-4CD8-A3C1-B6798F3F4137}
 		{9EEBDAD3-403D-4418-8540-848F2628EDFB} = {ED9E05F7-1764-41CF-B1B8-B21A3D758E91}
 		{676D508B-8EBA-48F7-8BBF-411B499AA7CB} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
+		{B39C05C0-393E-4AAE-B21F-9424B530FC95} = {676D508B-8EBA-48F7-8BBF-411B499AA7CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

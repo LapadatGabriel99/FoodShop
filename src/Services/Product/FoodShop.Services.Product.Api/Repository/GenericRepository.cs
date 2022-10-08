@@ -18,6 +18,8 @@ namespace FoodShop.Services.Product.Api.Repository
             _context = context;
         }
 
+        public TContext Context => _context;
+
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
@@ -105,7 +107,7 @@ namespace FoodShop.Services.Product.Api.Repository
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Update(entity);
             await _context.SaveChangesAsync();
 
             return entity;

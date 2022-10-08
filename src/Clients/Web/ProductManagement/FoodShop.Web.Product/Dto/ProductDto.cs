@@ -15,5 +15,7 @@
         public string ImageUrl { get; set; }
 
         public List<string> Categories { get; set; }
+
+        public string Category { get; set; }
     }
 }

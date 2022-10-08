@@ -28,5 +28,15 @@ namespace FoodShop.Web.Product.Services
         {
             return await _productApiService.GetById<GenericResponseDto<ProductDto>>(route, id);
         }
+
+        public async Task<GenericResponseDto<ProductDto>> Update(string route, ProductDto input)
+        {
+            return await _productApiService.Update<GenericResponseDto<ProductDto>, ProductDto>(route, input);
+        }
+
+        public async Task<GenericResponseDto<bool>> Delete(string route, string id)
+        {
+            return await _productApiService.Delete<GenericResponseDto<bool>>(route, id);
+        }
     }
 }

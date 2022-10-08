@@ -5,6 +5,11 @@ namespace FoodShop.Services.Product.Api.Models
 {
     public class Product : IEntity, ICanConvert
     {
+        public Product()
+        {
+            Categories = new HashSet<Category>();
+        }
+
         [Key]
         public string Id { get; set; }
 
@@ -22,6 +27,6 @@ namespace FoodShop.Services.Product.Api.Models
 
         public string ImageUrl { get; set; }
 
-        public virtual ICollection<ProductCategories> ProductCategories { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

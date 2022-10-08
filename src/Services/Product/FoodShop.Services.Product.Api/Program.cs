@@ -11,16 +11,20 @@ using FoodShop.Services.Product.Api.Repository.Contracts;
 using FoodShop.Services.Product.Api.Repository.Contracts.Categories;
 using FoodShop.Services.Product.Api.Repository.Contracts.Products;
 using FoodShop.Services.Product.Api.Repository.Products;
+using FoodShop.Services.Product.Api.Services.Authorization;
 using FoodShop.Services.Product.Api.Services.Cateogries;
+using FoodShop.Services.Product.Api.Services.Contracts.Authorization;
 using FoodShop.Services.Product.Api.Services.Contracts.Categories;
 using FoodShop.Services.Product.Api.Services.Contracts.Converters;
 using FoodShop.Services.Product.Api.Services.Contracts.Converters.Categories;
 using FoodShop.Services.Product.Api.Services.Contracts.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Contracts.Products;
+using FoodShop.Services.Product.Api.Services.Contracts.Transaction;
 using FoodShop.Services.Product.Api.Services.Converters;
 using FoodShop.Services.Product.Api.Services.Converters.Categories;
 using FoodShop.Services.Product.Api.Services.Converters.Products;
 using FoodShop.Services.Product.Api.Services.Products;
+using FoodShop.Services.Product.Api.Services.Transaction;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -36,6 +40,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IDatabaseTransactionService<ApplicationDbContext>, DatabaseTransactionService>();
 
 builder.Services.AddScoped<IConverter<ProductDto, Product>, ProductDtoToProductConverter>();
 builder.Services.AddScoped<IConverter<Product, ProductDto>, ProductToProductDtoConverter>();
@@ -44,6 +49,9 @@ builder.Services.AddScoped<IConverter<Category, CategoryDto>, CategoryToCategory
 builder.Services.AddScoped<IObjectConverterService, ObjectConverterService>();
 builder.Services.AddScoped<IProductConverterService, ProductConverterService>();
 builder.Services.AddScoped<ICategoryConverterService, CategoryConverterService>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserAuthorizationService, UserAuthorizationService>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();

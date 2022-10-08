@@ -1,6 +1,6 @@
 ﻿namespace FoodShop.Services.Product.Api.Models
 {
-    public class ProductCategories
+    public class ProductCategory
     {
         public string ProductId { get; set; }
 

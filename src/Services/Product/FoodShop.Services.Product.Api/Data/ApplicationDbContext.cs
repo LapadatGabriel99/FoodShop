@@ -10,6 +10,8 @@ namespace FoodShop.Services.Product.Api.Data
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
@@ -33,16 +35,18 @@ namespace FoodShop.Services.Product.Api.Data
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<ProductCategories>()
-                .HasKey(x => new { x.ProductId, x.CategoryId });
             modelBuilder.Entity<Models.Product>()
-                .HasMany(x => x.ProductCategories)
-                .WithOne(x => x.Product)
-                .HasForeignKey(x => x.ProductId);
-            modelBuilder.Entity<Category>()
-                .HasMany(x => x.ProductCategories)
-                .WithOne(x => x.Category)
-                .HasForeignKey(x => x.CategoryId);
+                .HasMany(x => x.Categories)
+                .WithMany(x => x.Products)
+                .UsingEntity<ProductCategory>(
+                    "ProductsCategories",
+                    x => x.HasOne(prop => prop.Category).WithMany().HasForeignKey(prop => prop.CategoryId),
+                    x => x.HasOne(prop => prop.Product).WithMany().HasForeignKey(prop => prop.ProductId),
+                    x =>
+                    {
+                        x.HasKey(prop => new { prop.ProductId, prop.CategoryId });
+                    }
+                );
         }
     }
 }

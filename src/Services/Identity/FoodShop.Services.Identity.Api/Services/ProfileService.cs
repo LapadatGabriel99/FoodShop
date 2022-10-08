@@ -33,6 +33,8 @@ namespace FoodShop.Services.Identity.Api.Services
             var claims = userClaims.Claims.ToList();
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
 
+            claims.Add(new Claim(JwtClaimTypes.PreferredUserName, user.UserName));
+            claims.Add(new Claim(JwtClaimTypes.Email, user.Email));
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.FirstName));
             claims.Add(new Claim(JwtClaimTypes.FamilyName, user.LastName));
             claims.Add(new Claim(JwtClaimTypes.Address, user.Address));
@@ -45,15 +47,6 @@ namespace FoodShop.Services.Identity.Api.Services
                 foreach (var roleName in roles)
                 {
                     claims.Add(new Claim(JwtClaimTypes.Role, roleName));
-
-                    if (_roleManager.SupportsRoleClaims)
-                    {
-                        var role = await _roleManager.FindByNameAsync(roleName);
-                        if (role != null)
-                        {
-                            claims.AddRange(await _roleManager.GetClaimsAsync(role));
-                        }
-                    }
                 }
             }
 

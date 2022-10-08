@@ -15,6 +15,8 @@ namespace FoodShop.Services.Product.Api.Repository.Products
             _genericRepository = genericRepository;
         }
 
+        public ApplicationDbContext Context => _genericRepository.Context;
+
         public async Task<Models.Product> AddAsync(Models.Product entity)
         {
             return await _genericRepository.AddAsync(entity);

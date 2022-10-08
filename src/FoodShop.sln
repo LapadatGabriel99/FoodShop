@@ -33,11 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Services.User.Api"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Product.Api", "Services\Product\FoodShop.Services.Product.Api\FoodShop.Services.Product.Api.csproj", "{04A26D06-4945-43E2-9CBE-83607E98C567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Services.Product.Api", "Services\Product\FoodShop.Services.Product.Api\FoodShop.Services.Product.Api.csproj", "{04A26D06-4945-43E2-9CBE-83607E98C567}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Web.Product", "Clients\Web\ProductManagement\FoodShop.Web.Product\FoodShop.Web.Product.csproj", "{AADA0E6D-4718-47B3-A5FB-3CBADF85D695}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Web.User", "Clients\Web\UserManagement\FoodShop.Web.User\FoodShop.Web.User.csproj", "{9EEBDAD3-403D-4418-8540-848F2628EDFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{676D508B-8EBA-48F7-8BBF-411B499AA7CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +86,7 @@ Global
 		{04A26D06-4945-43E2-9CBE-83607E98C567} = {D15F0E7A-5CDD-4AB6-A774-260AA68DDBE6}
 		{AADA0E6D-4718-47B3-A5FB-3CBADF85D695} = {9CE4419E-0173-4CD8-A3C1-B6798F3F4137}
 		{9EEBDAD3-403D-4418-8540-848F2628EDFB} = {ED9E05F7-1764-41CF-B1B8-B21A3D758E91}
+		{676D508B-8EBA-48F7-8BBF-411B499AA7CB} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

@@ -15,6 +15,8 @@ namespace FoodShop.Services.Product.Api.Repository.Categories
             _genericRepository = genericRepository;
         }
 
+        public ApplicationDbContext Context => _genericRepository.Context;
+
         public async Task<Category> AddAsync(Category entity)
         {
             return await _genericRepository.AddAsync(entity);

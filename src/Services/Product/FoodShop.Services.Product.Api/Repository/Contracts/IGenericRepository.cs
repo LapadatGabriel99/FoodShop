@@ -25,5 +25,7 @@ namespace FoodShop.Services.Product.Api.Repository.Contracts
         Task<bool> DeleteAsync(TEntity entity);
 
         Task<int> SavaChangesAsync();
+
+        TContext Context { get; }
     }
 }

@@ -16,12 +16,13 @@ namespace FoodShop.Services.Product.Api.Authorization.Filters.Exceptions
         public void OnException(ExceptionContext context)
         {
             _logger.LogError(context.Exception, context.Exception.Message);
+            _logger.LogError(context.Exception, context.Exception.InnerException?.Message);
 
             context.Result = new JsonResult(new GenericResponseDto<dynamic>
             {
-                StatusCode = StatusCodes.Status400BadRequest,
+                StatusCode = StatusCodes.Status500InternalServerError,
                 Data = null,
-                Errors = new List<string> { context.Exception.Message }
+                Errors = new List<string> { context.Exception.Message, context.Exception.InnerException?.Message }
             });
         }
     }

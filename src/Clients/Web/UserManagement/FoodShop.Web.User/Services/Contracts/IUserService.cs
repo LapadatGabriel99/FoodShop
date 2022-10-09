@@ -9,5 +9,11 @@ namespace FoodShop.Web.User.Services.Contracts
         Task<UserModelDto> GetById(string route, string id);
 
         Task<UserModelDto> Create(string route, UserModelDto input);
+
+        Task<UserModelDto> UpdateUserName(string route, UpdateUserNameDto input);
+
+        Task<UserModelDto> UpdatePassword(string route, UpdatePasswordDto input);
+
+        Task<UserModelDto> UpdateBasicCredentials(string route, UpdateBasicCredentialsDto input);
     }
 }

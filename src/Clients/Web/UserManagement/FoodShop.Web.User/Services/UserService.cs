@@ -35,5 +35,22 @@ namespace FoodShop.Web.User.Services
 
             return user;
         }
+
+        public async Task<UserModelDto> UpdateUserName(string route, UpdateUserNameDto input)
+        {
+            var user = await _userApiService.UpdateUserName(route, input);
+
+            return user;
+        }
+
+        public async Task<UserModelDto> UpdatePassword(string route, UpdatePasswordDto input)
+        {
+            return await _userApiService.UpdatePassword(route, input);
+        }
+
+        public async Task<UserModelDto> UpdateBasicCredentials(string route, UpdateBasicCredentialsDto input)
+        {
+            return await _userApiService.UpdateBasicCredentials(route, input);
+        }
     }
 }

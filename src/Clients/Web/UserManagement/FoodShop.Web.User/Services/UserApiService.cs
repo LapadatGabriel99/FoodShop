@@ -30,5 +30,20 @@ namespace FoodShop.Web.User.Services
         {
             return await _httpClient.PostAsync<UserModelDto, UserModelDto>(route, input);
         }
+
+        public async Task<UserModelDto> UpdateUserName(string route, UpdateUserNameDto input)
+        {
+            return await _httpClient.PutAsync<UserModelDto, UpdateUserNameDto>(route, input);
+        }
+
+        public async Task<UserModelDto> UpdatePassword(string route, UpdatePasswordDto input)
+        {
+            return await _httpClient.PutAsync<UserModelDto, UpdatePasswordDto>(route, input);
+        }
+
+        public async Task<UserModelDto> UpdateBasicCredentials(string route, UpdateBasicCredentialsDto input)
+        {
+            return await _httpClient.PutAsync<UserModelDto, UpdateBasicCredentialsDto>(route, input);
+        }
     }
 }

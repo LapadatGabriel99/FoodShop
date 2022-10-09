@@ -28,5 +28,16 @@ namespace FoodShop.Web.User.Extensions
 
             return objectResult;
         }
+
+        public static async Task<TOutput> PutAsync<TOutput, TInput>(this HttpClient client, string uri, TInput input)
+        {
+            var fullRoute = client.BaseAddress + uri;
+            var serializedInput = JsonConvert.SerializeObject(input);
+            var response = await client.PutAsync(fullRoute, new StringContent(serializedInput, Encoding.UTF8, "application/json"));
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var objectResult = JsonConvert.DeserializeObject<TOutput>(jsonResult);
+
+            return objectResult;
+        }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Globalization;
-using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace FoodShop.Web.Product.Services
 {
@@ -28,6 +28,8 @@ namespace FoodShop.Web.Product.Services
             {
                 request.SetBearerToken(accessToken);
             }
+
+            request.Headers.TryAddWithoutValidation("id", _accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
             return await base.SendAsync(request, cancellationToken);
         }

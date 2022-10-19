@@ -6,9 +6,9 @@ namespace FoodShop.Services.User.Api.Authorization.Handlers
 {
     public sealed class SameUserIdAndUserManagementAdminRoleHandler : AuthorizationHandler<SameUserIdAndUserManagementAdminRoleRequirement>
     {
-        private readonly IUserPermissionService _userPermissionService;
+        private readonly IUserAuthorizationService _userPermissionService;
 
-        public SameUserIdAndUserManagementAdminRoleHandler(IUserPermissionService userPermissionService)
+        public SameUserIdAndUserManagementAdminRoleHandler(IUserAuthorizationService userPermissionService)
         {
             _userPermissionService = userPermissionService;
         }

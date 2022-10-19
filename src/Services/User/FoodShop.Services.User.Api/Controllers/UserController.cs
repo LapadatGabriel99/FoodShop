@@ -1,7 +1,10 @@
-﻿using FoodShop.Services.User.Api.Data;
+﻿using FoodShop.Integration.ServiceBus.Messages;
+using FoodShop.Services.User.Api.Data;
 using FoodShop.Services.User.Api.Dto;
 using FoodShop.Services.User.Api.Models;
 using FoodShop.Services.User.Api.Services.Contracts;
+using FoodShop.Services.User.Api.Services.Contracts.Authorization;
+using FoodShop.Services.User.Api.Services.Contracts.Messaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,17 +20,26 @@ namespace FoodShop.Services.User.Api.Controllers
         private readonly IUserService _userService;
         private readonly IUserConverterService _userConverterService;
         private readonly IUserFilterService _userFilterService;
+        private readonly IUserAuthorizationService _userAuthorizationService;
+        private readonly IMessagePublisherService _messagePublisherService;
+        private readonly IConfiguration _configuration;
 
         public UserController(
             ILogger<UserController> logger,
             IUserService userService,
             IUserConverterService userConverterService,
-            IUserFilterService userFilterService)
+            IUserFilterService userFilterService,
+            IUserAuthorizationService userAuthorizationService,
+            IMessagePublisherService messagePublisherService,
+            IConfiguration configuration)
         {
             _logger = logger;
             _userService = userService;
             _userConverterService = userConverterService;
             _userFilterService = userFilterService;
+            _userAuthorizationService = userAuthorizationService;
+            _messagePublisherService = messagePublisherService;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -72,6 +84,12 @@ namespace FoodShop.Services.User.Api.Controllers
         {
             var user = await _userService.UpdateUserName(dto.Id, dto.UserName);
             var userDtoFromUser = _userConverterService.Convert(user);
+            await _messagePublisherService.SendMessageAsync(new CreateEmailMessage
+            {
+                UserEmail = _userAuthorizationService.GetUserEmail(),
+                Reason = "Update-UserName",
+                Content = dto.UserName
+            }, _configuration["FoodShopServiceBus:EmailServiceQueue:Name"]);
 
             return Ok(userDtoFromUser);
         }

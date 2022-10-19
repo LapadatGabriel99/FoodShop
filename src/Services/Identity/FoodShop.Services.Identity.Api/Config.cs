@@ -39,7 +39,7 @@ namespace FoodShop.Services.Identity.Api
         {
             new Client
             {
-                AccessTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
                 ClientId = "foodShop-User-Management-Admin",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -62,7 +62,7 @@ namespace FoodShop.Services.Identity.Api
             },
             new Client
             {
-                AccessTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
                 ClientId = "foodShop-Product-Management-Admin",
                 ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -85,7 +85,7 @@ namespace FoodShop.Services.Identity.Api
             },
             new Client
             {
-                AccessTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
                 ClientId = "foodShop-Coupon-Management-Admin",
                 ClientSecrets = { new Secret("511536EF-0C79-F270-80CA-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -108,7 +108,7 @@ namespace FoodShop.Services.Identity.Api
             }, 
             new Client
             {
-                AccessTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
                 ClientId = "foodShop-Inventory-Management-Admin",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4058-A3D6-1C89C192F69A".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
@@ -131,7 +131,7 @@ namespace FoodShop.Services.Identity.Api
             },
             new Client
             {
-                AccessTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
                 ClientId = "foodShop-Customer",
                 ClientSecrets = { new Secret("511536EF-A3D6-0C79-F270-A37998FB86B0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,

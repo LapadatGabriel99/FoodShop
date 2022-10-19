@@ -38,8 +38,8 @@ builder.Services.AddAuthentication(options =>
 })
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
     {
-        config.Cookie.MaxAge = TimeSpan.FromMinutes(30);
-        config.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        config.Cookie.MaxAge = TimeSpan.FromHours(3.5);
+        config.ExpireTimeSpan = TimeSpan.FromHours(3);
         config.AccessDeniedPath = "/Authorization/Index";
     })
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>

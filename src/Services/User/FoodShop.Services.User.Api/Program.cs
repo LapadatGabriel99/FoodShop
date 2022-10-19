@@ -1,3 +1,4 @@
+using Azure.Messaging.ServiceBus;
 using FoodShop.Services.User.Api;
 using FoodShop.Services.User.Api.Authorization.Handlers;
 using FoodShop.Services.User.Api.Authorization.Requirements;
@@ -12,6 +13,8 @@ using FoodShop.Services.User.Api.Services;
 using FoodShop.Services.User.Api.Services.Authorization;
 using FoodShop.Services.User.Api.Services.Contracts;
 using FoodShop.Services.User.Api.Services.Contracts.Authorization;
+using FoodShop.Services.User.Api.Services.Contracts.Messaging;
+using FoodShop.Services.User.Api.Services.Messaging;
 using FoodShop.Services.User.Api.Specification;
 using FoodShop.Services.User.Api.Specification.Contracts;
 using FoodShop.Services.User.Api.Web.Filters;
@@ -19,6 +22,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -66,8 +70,22 @@ builder.Services.AddScoped<IConverter<UserModel, UserModelDto>, UserModelToUserM
 builder.Services.AddScoped<IConverter<UpdateBasicCredentialsDto, UserModel>, UpdateBasicCredentialsDtoToUserModelConverter>();
 builder.Services.AddScoped<IObjectConverterService, ObjectConverterService>();
 builder.Services.AddScoped<IUserConverterService, UserConverterService>();
-builder.Services.AddScoped<IUserPermissionService, UserPermissionService>();
+builder.Services.AddScoped<IUserAuthorizationService, UserAuthorizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddAzureClients(config =>
+{
+    config.AddServiceBusClient(builder.Configuration.GetConnectionString("FoodShopServiceBus"))
+        .WithName("FoodShopServiceBus");
+});
+
+builder.Services.AddSingleton<IMessagePublisherService, MessagePublisherService>(provider =>
+{
+    var azureServiceBusClientFactory = provider.GetService<IAzureClientFactory<ServiceBusClient>>();
+    var foodShopServiceBusClient = azureServiceBusClientFactory.CreateClient("FoodShopServiceBus");
+
+    return new MessagePublisherService(foodShopServiceBusClient);
+});
 
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -6,9 +6,9 @@ namespace FoodShop.Services.User.Api.Authorization.Handlers
 {
     public sealed class DifferentUserIdHandler : AuthorizationHandler<DifferentUserIdRequirement>
     {
-        private readonly IUserPermissionService _userPermissionService;
+        private readonly IUserAuthorizationService _userPermissionService;
 
-        public DifferentUserIdHandler(IUserPermissionService userPermissionService)
+        public DifferentUserIdHandler(IUserAuthorizationService userPermissionService)
         {
             _userPermissionService = userPermissionService;
         }

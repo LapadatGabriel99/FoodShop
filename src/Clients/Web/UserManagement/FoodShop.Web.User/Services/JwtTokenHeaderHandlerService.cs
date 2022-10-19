@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace FoodShop.Web.User.Services
 {
@@ -17,6 +18,7 @@ namespace FoodShop.Web.User.Services
             var token = await _accessor.HttpContext.GetTokenAsync("access_token");
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            request.Headers.TryAddWithoutValidation("id", _accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
             return await base.SendAsync(request, cancellationToken);
         }

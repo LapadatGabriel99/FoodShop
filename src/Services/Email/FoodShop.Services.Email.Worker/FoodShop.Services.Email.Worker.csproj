@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-FoodShop.Services.Email.Worker-F8AB3480-BC19-4384-92FF-F9CA2A59C427</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Program.cs~RF2afa162.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.11.0" />
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.6.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Integration\ServiceBus\FoodShop.Integration.ServiceBus.Messaging\FoodShop.Integration.ServiceBus.csproj" />
+  </ItemGroup>
+</Project>

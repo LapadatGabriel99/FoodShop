@@ -2,6 +2,7 @@
 using FoodShop.Web.User.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace FoodShop.Web.User.Controllers
 {
@@ -11,12 +12,14 @@ namespace FoodShop.Web.User.Controllers
         private readonly ILogger<EditUserController> _logger;
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
+        private readonly IConfiguration _configuration;
 
-        public EditUserController(ILogger<EditUserController> logger, IUserService userService, IAuthService authService)
+        public EditUserController(ILogger<EditUserController> logger, IUserService userService, IAuthService authService, IConfiguration configuration)
         {
             _logger = logger;
             _userService = userService;
             _authService = authService;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -102,9 +105,15 @@ namespace FoodShop.Web.User.Controllers
 
             await _userService.UpdateUserName("api/user/update-username", dto);
 
-            _authService.GetRefreshTokenRsponse()
+            await RefreshUserAuthenticationAccess();
 
             return RedirectToAction(nameof(Edit), "EditUser", new { id = dto.Id });
+        }
+
+        private async Task RefreshUserAuthenticationAccess()
+        {
+            var refreshTokenResponse = await _authService.GetRefreshTokenRsponse(_configuration["UserManagement:ClientId"], _configuration["UserManagement:ClientSecret"]);
+            await _authService.AuthenticateUser(refreshTokenResponse.UpdatedTokens);
         }
     }
 }

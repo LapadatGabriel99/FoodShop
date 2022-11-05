@@ -65,6 +65,7 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Add("offline_access");
         options.ClaimActions.MapUniqueJsonKey("role", "role");
         options.ClaimActions.MapUniqueJsonKey("name", "name");
+        options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
         options.SaveTokens = true;
     });
 

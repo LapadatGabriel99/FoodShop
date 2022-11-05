@@ -58,7 +58,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.user.delete",
                     "foodShop.user.update",
                 },
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                UpdateAccessTokenClaimsOnRefresh = true,
             },
             new Client
             {
@@ -81,7 +82,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.product.delete",
                     "foodShop.product.update",
                 },
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                UpdateAccessTokenClaimsOnRefresh = true
             },
             new Client
             {
@@ -104,7 +106,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.coupon.delete",
                     "foodShop.coupon.update",
                 },
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                UpdateAccessTokenClaimsOnRefresh = true
             }, 
             new Client
             {
@@ -127,7 +130,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.inventory.delete",
                     "foodShop.inventory.update",
                 },
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                UpdateAccessTokenClaimsOnRefresh = true
             },
             new Client
             {
@@ -150,7 +154,8 @@ namespace FoodShop.Services.Identity.Api
                     "foodShop.coupon.read",
                     "foodShop.inventory.read",
                 },
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                UpdateAccessTokenClaimsOnRefresh = true
             }
         };
     }

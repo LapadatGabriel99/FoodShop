@@ -46,8 +46,10 @@ namespace FoodShop.Web.Product.Services
             return await _accessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
         }
 
-        public async Task<RefreshTokenResponse> GetRefreshTokenRsponse(string cliendId, string clientSecret, string refreshToken)
+        public async Task<RefreshTokenResponse> GetRefreshTokenRsponse(string cliendId, string clientSecret)
         {
+            var refreshToken = await _accessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+
             var refreshResponse = await _identityServerApiService
                 .RequestRefreshTokenAsync(cliendId, clientSecret, refreshToken);
 

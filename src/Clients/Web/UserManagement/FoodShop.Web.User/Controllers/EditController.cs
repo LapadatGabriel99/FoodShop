@@ -10,11 +10,13 @@ namespace FoodShop.Web.User.Controllers
     {
         private readonly ILogger<EditUserController> _logger;
         private readonly IUserService _userService;
+        private readonly IAuthService _authService;
 
-        public EditUserController(ILogger<EditUserController> logger, IUserService userService)
+        public EditUserController(ILogger<EditUserController> logger, IUserService userService, IAuthService authService)
         {
             _logger = logger;
             _userService = userService;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -99,6 +101,8 @@ namespace FoodShop.Web.User.Controllers
             }
 
             await _userService.UpdateUserName("api/user/update-username", dto);
+
+            _authService.GetRefreshTokenRsponse()
 
             return RedirectToAction(nameof(Edit), "EditUser", new { id = dto.Id });
         }

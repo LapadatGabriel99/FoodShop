@@ -13,11 +13,13 @@ namespace FoodShop.Web.Product.Services
         private readonly IHttpContextAccessor _accessor;
 
         private readonly IAuthService _authService;
+        private readonly IConfiguration _configuration;
 
-        public JwtTokenHeaderHandlerService(IHttpContextAccessor accessor, IAuthService authService)
+        public JwtTokenHeaderHandlerService(IHttpContextAccessor accessor, IAuthService authService, IConfiguration configuration)
         {
             _accessor = accessor;
             _authService = authService;
+            _configuration = configuration;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -41,10 +43,8 @@ namespace FoodShop.Web.Product.Services
                 return await _authService.GetAccessToken();
             }
 
-            var refreshToken = await _accessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
-
             var refreshTokenResponse = await _authService
-                .GetRefreshTokenRsponse("foodShop-Product-Management-Admin", "511536EF-F270-4058-80CA-1C89C192F69A", refreshToken);
+                .GetRefreshTokenRsponse(_configuration["ProductManagement:ClientId"], _configuration["ProductManagement:ClientSecret"]);
 
             await _authService.AuthenticateUser(refreshTokenResponse.UpdatedTokens);
 

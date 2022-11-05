@@ -1,7 +1,7 @@
-﻿using FoodShop.Web.Product.Models;
+﻿using FoodShop.Web.User.Models;
 using Microsoft.AspNetCore.Authentication;
 
-namespace FoodShop.Web.Product.Services.Contracts
+namespace FoodShop.Web.User.Services.Contracts
 {
     public interface IAuthService
     {

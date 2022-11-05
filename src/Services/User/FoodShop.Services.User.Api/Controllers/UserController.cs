@@ -1,4 +1,5 @@
-﻿using FoodShop.Integration.ServiceBus.Messages;
+﻿
+using FoodShop.Integration.ServiceBus.Messages;
 using FoodShop.Services.User.Api.Data;
 using FoodShop.Services.User.Api.Dto;
 using FoodShop.Services.User.Api.Models;
@@ -88,7 +89,7 @@ namespace FoodShop.Services.User.Api.Controllers
             {
                 UserEmail = _userAuthorizationService.GetUserEmail(),
                 Reason = "Update-UserName",
-                Content = dto.UserName
+                Content = $"Updated username to: {dto.UserName}"
             }, _configuration["FoodShopServiceBus:EmailServiceQueue:Name"]);
 
             return Ok(userDtoFromUser);

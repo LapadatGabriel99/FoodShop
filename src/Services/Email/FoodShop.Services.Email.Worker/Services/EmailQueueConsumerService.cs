@@ -1,5 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using FoodShop.Integration.ServiceBus.Messages;
+using FoodShop.Services.Email.Worker.Models;
+using FoodShop.Services.Email.Worker.Services.Contracts;
 using System.Text;
 using System.Text.Json;
 
@@ -10,12 +12,14 @@ namespace FoodShop.Services.Email.Worker.Services
         private readonly ILogger<EmailQueueConsumerService> _logger;
         private readonly ServiceBusClient _serviceBusClient;
         private readonly IConfiguration _configuration;
+        private readonly IEmailSenderService _emailSenderService;
 
-        public EmailQueueConsumerService(ILogger<EmailQueueConsumerService> logger, ServiceBusClient serviceBusClient, IConfiguration configuration)
+        public EmailQueueConsumerService(ILogger<EmailQueueConsumerService> logger, ServiceBusClient serviceBusClient, IConfiguration configuration, IEmailSenderService emailSenderService)
         {
             _logger = logger;
             _serviceBusClient = serviceBusClient;
             _configuration = configuration;
+            _emailSenderService = emailSenderService;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
@@ -91,10 +95,27 @@ namespace FoodShop.Services.Email.Worker.Services
         private async Task ProcessMessageAsync(ProcessMessageEventArgs args)
         {
             var json = Encoding.UTF8.GetString(args.Message.Body);
-
             var createEmailMessage = JsonSerializer.Deserialize<CreateEmailMessage>(json);
 
             await args.CompleteMessageAsync(args.Message);
+
+            var email = new EmailModel
+            {
+                Subject = createEmailMessage.Reason,
+                Body = createEmailMessage.Content,
+                Recipients = new List<string>
+                {
+                    createEmailMessage.UserEmail
+                }
+            };
+
+            bool success;
+            do
+            {
+                var emailResult = await _emailSenderService.SendEmailAsync(email);
+                success = await _emailSenderService.GetSendStatusAsync(emailResult);
+
+            } while(!success);
         }
     }
 }

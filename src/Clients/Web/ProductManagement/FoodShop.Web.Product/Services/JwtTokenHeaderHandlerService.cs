@@ -12,12 +12,12 @@ namespace FoodShop.Web.Product.Services
     {
         private readonly IHttpContextAccessor _accessor;
 
-        private readonly IIdentityServerApiService _identityServerApiService;
+        private readonly IAuthService _authService;
 
-        public JwtTokenHeaderHandlerService(IHttpContextAccessor accessor, IIdentityServerApiService identityServerApiService)
+        public JwtTokenHeaderHandlerService(IHttpContextAccessor accessor, IAuthService authService)
         {
             _accessor = accessor;
-            _identityServerApiService = identityServerApiService;
+            _authService = authService;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -36,54 +36,19 @@ namespace FoodShop.Web.Product.Services
 
         public async Task<string> GetAccessTokenAsync()
         {
-            var expiresAt = await _accessor.HttpContext.GetTokenAsync("expires_at");
-
-            var expiresAtAsDateTimeOffset = DateTimeOffset.Parse(expiresAt, CultureInfo.InvariantCulture);
-
-            if (expiresAtAsDateTimeOffset.AddSeconds(-60).ToUniversalTime() > DateTime.UtcNow)
+            if (await _authService.CheckIfAccessTokenExpired())
             {
-                return await _accessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+                return await _authService.GetAccessToken();
             }
 
             var refreshToken = await _accessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
 
-            var refreshResponse = await _identityServerApiService
-                .RequestRefreshTokenAsync("foodShop-Product-Management-Admin", "511536EF-F270-4058-80CA-1C89C192F69A", refreshToken);
+            var refreshTokenResponse = await _authService
+                .GetRefreshTokenRsponse("foodShop-Product-Management-Admin", "511536EF-F270-4058-80CA-1C89C192F69A", refreshToken);
 
-            var updatedTokens = new List<AuthenticationToken>();
-            updatedTokens.Add(new AuthenticationToken
-            {
-                Name = OpenIdConnectParameterNames.IdToken,
-                Value = refreshResponse.IdentityToken
-            });
-            updatedTokens.Add(new AuthenticationToken
-            {
-                Name = OpenIdConnectParameterNames.AccessToken,
-                Value = refreshResponse.AccessToken
-            });
-            updatedTokens.Add(new AuthenticationToken
-            {
-                Name = OpenIdConnectParameterNames.RefreshToken,
-                Value = refreshResponse.RefreshToken
-            });
-            updatedTokens.Add(new AuthenticationToken
-            {
-                Name = "expires_at",
-                Value = (DateTime.UtcNow + TimeSpan.FromSeconds(refreshResponse.ExpiresIn)).ToString("o", CultureInfo.InvariantCulture)
-            });
+            await _authService.AuthenticateUser(refreshTokenResponse.UpdatedTokens);
 
-            var currentAuthenticateResult = await _accessor.HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            currentAuthenticateResult.Properties.StoreTokens(updatedTokens);
-
-            await _accessor
-                .HttpContext
-                .SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    currentAuthenticateResult.Principal,
-                    currentAuthenticateResult.Properties);
-
-            return refreshResponse.AccessToken;
+            return refreshTokenResponse.AccessToken;
         }
     }
 }

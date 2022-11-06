@@ -45,7 +45,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBus", "ServiceBus", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Integration.ServiceBus", "Integration\ServiceBus\FoodShop.Integration.ServiceBus.Messaging\FoodShop.Integration.ServiceBus.csproj", "{99123BED-31FF-42A3-9401-6A75FDD64DA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Email.Worker", "Services\Email\FoodShop.Services.Email.Worker\FoodShop.Services.Email.Worker.csproj", "{4A647BB2-5688-44D7-BD2E-FF17BB32161C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShop.Services.Email.Worker", "Services\Email\FoodShop.Services.Email.Worker\FoodShop.Services.Email.Worker.csproj", "{4A647BB2-5688-44D7-BD2E-FF17BB32161C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{03640930-5568-433A-BC59-026F0BFF69F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Inventory.Api", "Services\Inventory\FoodShop.Services.Inventory.Api\FoodShop.Services.Inventory.Api.csproj", "{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coupon", "Coupon", "{54C99B77-C808-41C9-89BD-C1DCB99EB283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop.Services.Coupon.Api", "Services\Coupon\FoodShop.Services.Coupon.Api\FoodShop.Services.Coupon.Api.csproj", "{C89F2ED6-D344-43F3-9849-1D49A1A44AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +89,14 @@ Global
 		{4A647BB2-5688-44D7-BD2E-FF17BB32161C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A647BB2-5688-44D7-BD2E-FF17BB32161C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A647BB2-5688-44D7-BD2E-FF17BB32161C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C89F2ED6-D344-43F3-9849-1D49A1A44AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C89F2ED6-D344-43F3-9849-1D49A1A44AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C89F2ED6-D344-43F3-9849-1D49A1A44AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C89F2ED6-D344-43F3-9849-1D49A1A44AB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +120,10 @@ Global
 		{F003E87C-5E0E-41F9-95B5-BD03DFDD5862} = {EED61563-6517-4218-9768-2AF9C25586C7}
 		{99123BED-31FF-42A3-9401-6A75FDD64DA7} = {F003E87C-5E0E-41F9-95B5-BD03DFDD5862}
 		{4A647BB2-5688-44D7-BD2E-FF17BB32161C} = {676D508B-8EBA-48F7-8BBF-411B499AA7CB}
+		{03640930-5568-433A-BC59-026F0BFF69F1} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
+		{0A7CC3BE-0C60-4F00-A76C-DFEA865CC3C6} = {03640930-5568-433A-BC59-026F0BFF69F1}
+		{54C99B77-C808-41C9-89BD-C1DCB99EB283} = {7E57A2D9-6C4B-47A4-B666-EB3CC7AEED40}
+		{C89F2ED6-D344-43F3-9849-1D49A1A44AB9} = {54C99B77-C808-41C9-89BD-C1DCB99EB283}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095112AD-1B5A-45E0-8151-8281E427E953}

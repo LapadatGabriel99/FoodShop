@@ -47,7 +47,14 @@ namespace FoodShop.Web.User.Controllers
                 return View(dto);
             }
 
+            if (dto.NewPassword != dto.NewPasswordConfirmed)
+            {
+                return View(dto);
+            }
+
             await _userService.UpdatePassword("api/user/update-password", dto);
+
+            await RefreshUserAuthenticationAccess();
 
             return RedirectToAction(nameof(Edit), "EditUser", new { id = dto.Id });
         }
@@ -82,6 +89,8 @@ namespace FoodShop.Web.User.Controllers
             }
 
             await _userService.UpdateBasicCredentials("api/user/update-basic-credentials", dto);
+
+            await RefreshUserAuthenticationAccess();
 
             return RedirectToAction(nameof(Edit), "EditUser", new { id = dto.Id });
         }

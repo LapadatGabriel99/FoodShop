@@ -15,7 +15,7 @@ namespace FoodShop.Services.User.Api.Converters
                     Id = source.Id,                    
                     Address = source.Address,
                     LastName = source.LastName,
-                    FirstName = source.LastName
+                    FirstName = source.FirstName
                 },
             };
 

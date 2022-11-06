@@ -125,6 +125,29 @@ namespace FoodShop.Services.User.Api.Controllers
             var userFromDto = _userConverterService.Convert(userDto);
             var user = await _userService.UpdateBasicCredentials(userFromDto);
             var userDtoFromUser = _userConverterService.Convert(user);
+            await _messagePublisherService.SendMessageAsync(new CreateEmailMessage
+            {
+                UserEmail = _userAuthorizationService.GetUserEmail(),
+                Reason = "Update-Basic-Credentials",
+                Content = $"Changed credentials for user: {userDtoFromUser.UserName}\nNew Address: {userDtoFromUser.Address}\nFirst Name: {userDtoFromUser.FirstName}\nLast Name: {userDtoFromUser.LastName}"
+            }, _configuration["FoodShopServiceBus:EmailServiceQueue:Name"]);
+
+            return Ok(userDtoFromUser);
+        }
+
+        [HttpPut]
+        [Route("update-password")]
+        [Authorize(Policy = PolicyList.UserUpdate)]
+        public async Task<ActionResult<UserModelDto>> Update([FromBody] UpdatePasswordDto dto)
+        {
+            var user = await _userService.UpdatePassword(dto.Id, dto.CurrentPassword, dto.NewPassword);
+            var userDtoFromUser = _userConverterService.Convert(user);
+            await _messagePublisherService.SendMessageAsync(new CreateEmailMessage
+            {
+                UserEmail = _userAuthorizationService.GetUserEmail(),
+                Reason = "Update-Password",
+                Content = $"Changed password for user: {userDtoFromUser.UserName}"
+            }, _configuration["FoodShopServiceBus:EmailServiceQueue:Name"]);
 
             return Ok(userDtoFromUser);
         }
